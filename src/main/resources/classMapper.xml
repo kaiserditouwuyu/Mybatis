@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 为这个mapper指定一个唯一的namespace，namespace的值习惯上设置成包名+sql映射文件名，这样就能够保证namespace的值是唯一的
+例如namespace="me.gacl.mapping.userMapper"就是me.gacl.mapping(包名)+userMapper(userMapper.xml文件去除后缀)
+ -->
+<mapper namespace="com.classMapper">
+	
+	<resultMap type="com.app.entity.Classes" id="classResultMap">
+		<id property="id" column="c_id"/>
+		<result property="name" column="c_name"/>
+		<association property="teacher" javaType="com.app.entity.Teacher">
+			<id property="id" column="t_id"/>
+			<result property="name" column="t_name"/>
+		</association>
+		<!-- ofType指定Students集合中的对象类型 -->
+		<collection property="students" ofType="com.app.entity.Student">
+			<id property="id" column="s_id"/>
+			<result property="name" column="s_name"/>
+		</collection>
+	</resultMap>
+	<select id="getClass" parameterType="int" resultMap="classResultMap">
+		select * from class as c,teacher as t,student as s where c.teacher_id=t.t_id and c.c_id=s.class_id and c.c_id=#{id}
+	</select>   
+   
+</mapper>
