@@ -4,7 +4,8 @@
 例如namespace="me.gacl.mapping.userMapper"就是me.gacl.mapping(包名)+userMapper(userMapper.xml文件去除后缀)
  -->
 <mapper namespace="com.classMapper">
-	
+	<!-- 开启本mapper下的二级缓存 -->
+	<cache></cache>
 	<resultMap type="com.app.entity.Classes" id="classResultMap">
 		<id property="id" column="c_id"/>
 		<result property="name" column="c_name"/>
@@ -21,5 +22,9 @@
 	<select id="getClass" parameterType="int" resultMap="classResultMap">
 		select * from class as c,teacher as t,student as s where c.teacher_id=t.t_id and c.c_id=s.class_id and c.c_id=#{id}
 	</select>   
+	
+	<delete id="deleteStudent" parameterType="int">
+		delete from student where s_id = #{id}
+	</delete>
    
 </mapper>

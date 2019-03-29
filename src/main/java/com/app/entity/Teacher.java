@@ -1,6 +1,8 @@
 package com.app.entity;
 
-public class Teacher {
+import java.io.Serializable;
+
+public class Teacher implements Serializable{
 	private int id; //id==>t_id
 	private String name; //name==>t_name
 	public int getId() {

@@ -3,16 +3,20 @@
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-
 	<!-- 引用db.properties配置文件 -->
-	<properties  resource="db.properties"/>
+	<properties resource="db.properties"/>
 
+	<settings>
+        <!-- 开启二级缓存  默认值为true -->
+    	<setting name="cacheEnabled" value="true"/>
+    </settings>
+	
  	<!-- 注解方式就不需要别名了 -->
  	<!-- 别名 --> 	
  	<typeAliases>
  		<typeAlias alias="User" type="com.app.entity.User" />
  	</typeAliases>
- 
+ 	
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC"/>

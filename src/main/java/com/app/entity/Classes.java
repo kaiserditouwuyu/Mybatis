@@ -1,20 +1,22 @@
 package com.app.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Classes {
+public class Classes implements Serializable{
 	private int id;  //id==>c_id
 	private String name; //name==>c_name
 	
 	private Teacher teacher;
-	private Student[] students;
+	private List<Student> students;
 	
 	
-	public Student[] getStudents() {
+
+	public List<Student> getStudents() {
 		return students;
 	}
 
-	public void setStudents(Student[] students) {
+	public void setStudents(List<Student> students) {
 		this.students = students;
 	}
 
